@@ -55,23 +55,36 @@ async function startBot() {
       console.log('💡 Set HAXBALL_TOKEN in your Render dashboard to create a room');
       console.log('📖 Documentation: https://github.com/haxball/haxball-issues/wiki/Headless-Host');
     } else {
-      console.log('🔑 Token found, you can create rooms');
+      console.log('🔑 Token found, creating Haxball room...');
       
-      // مثال على إنشاء غرفة (اختياري)
-      // يمكن للمستخدم تفعيل هذا الجزء عند الحاجة
-      /*
+      // إنشاء غرفة Haxball
       const room = HBInit({
-        roomName: 'My Haxball Room',
+        roomName: 'My Arabic Haxball Room 🇸🇦',
         maxPlayers: 16,
-        public: false,
+        public: true,
         noPlayer: true,
         token: token
       });
       
+      // عند إنشاء الغرفة بنجاح
       room.onRoomLink = function(link) {
-        console.log('🔗 Room created:', link);
+        console.log('🏈 ========================================');
+        console.log('🎉 تم إنشاء الغرفة بنجاح!');
+        console.log('🔗 رابط الغرفة:', link);
+        console.log('📍 اسم الغرفة: My Arabic Haxball Room 🇸🇦');
+        console.log('👥 عدد اللاعبين: 16');
+        console.log('🌍 نوع الغرفة: عامة (Public)');
+        console.log('🏈 ========================================');
       };
-      */
+      
+      // معلومات إضافية عن الغرفة
+      room.onPlayerJoin = function(player) {
+        console.log('👤 لاعب جديد انضم:', player.name);
+      };
+      
+      room.onPlayerLeave = function(player) {
+        console.log('👋 لاعب غادر:', player.name);
+      };
     }
     
     // العثور على port متاح وبدء الخادم
